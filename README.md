@@ -141,6 +141,8 @@ The server will start on **http://localhost:8000**.
 
 ## 📌 Contributors  
 👨‍💻 **Shivam Sunda** - Developed as part of a university project at **VIT**.  
+👨‍💻 **Yash Bothra** - Developed as part of a university project at **VIT**.  
+👨‍💻 **Tulsee Agrawal** - Developed as part of a university project at **VIT**.  
 
 ---
 
