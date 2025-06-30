@@ -9,7 +9,20 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static("public"));
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const app = express();
+app.use(express.static(path.join(__dirname, "public")));  // Serve static assets
+
+// If you want login.html to show for root (/) requests:
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
+// (Place your API route definitions here)
+
 
 // ✅ Razorpay Instance
 const razorpay = new Razorpay({
