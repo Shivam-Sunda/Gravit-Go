@@ -9,6 +9,8 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static("public"));
+
 // ✅ Razorpay Instance
 const razorpay = new Razorpay({
     key_id: "rzp_test_qN051OkLcA22wd",  // Replace with your Key ID
