@@ -16,7 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, "public")));  // Serve static assets
 
 app.get("/", (req, res) => {
-  res.redirect("/login/login.html");
+  res.redirect("/public/login/login.html");
 });
 
 
