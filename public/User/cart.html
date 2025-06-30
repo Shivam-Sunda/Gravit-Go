@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Orders</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  <h1 class="main-heading">
+    <img src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY=" alt="Logo" class="logo"> GraVIT & Go
+  </h1>
+    <h2>All Orders</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Restaurant</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="cartOrdersBody"></tbody>
+    </table>
+
+    <button class="back-btn" onclick="window.history.back()">Back</button>
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-box">
+            <h3>About Us</h3>
+            <p>Campus Restaurant Management System streamlines dining and takeaway operations for students, faculty, and staff.</p>
+            <div class="contact">
+              <span><i class="fa fa-phone"></i> &nbsp; +91 8406806044</span>
+              <span><i class="fa fa-envelope"></i> &nbsp; crms.vit@gmail.com</span>
+            </div>
+          </div>
+          
+          <div class="footer-box">
+            <h3>Raise a complaint </h3>
+            <p>Faced an issue? Let us know! We're here to resolve your concerns swiftly.</p>
+            <a href="../Complaint/complain.html" class="complaint-btn">Lodge a Complaint</a>
+          </div>
+          
+          <div class="footer-box">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Campus Restaurant Management System. All rights reserved.</p>
+        </div>
+      </footer>
+    <script>
+        async function fetchAllOrders() {
+            try {
+                const response = await fetch("http://localhost:8000/get-all-orders");
+                const data = await response.json();
+    
+                if (data.success) {
+                    displayOrders(data.orders);
+                } else {
+                    console.error("Error fetching orders:", data.error);
+                }
+            } catch (error) {
+                console.error("❌ Error Fetching Orders:", error);
+            }
+        }
+    
+        function displayOrders(orders) {
+            let cartOrdersBody = document.getElementById("cartOrdersBody");
+            cartOrdersBody.innerHTML = ""; 
+    
+            if (orders.length === 0) {
+                cartOrdersBody.innerHTML = `<tr><td colspan="5" class="no-orders">No orders available.</td></tr>`;
+                return;
+            }
+    
+            orders.forEach(order => {
+                let row = document.createElement("tr");
+    
+                row.innerHTML = `
+                    <td>${order.orderId}</td>
+                    <td>${order.restaurant}</td>  <!-- ✅ Now correctly mapped -->
+                    <td>${order.productName}</td>
+                    <td>${order.quantity}</td>
+                    <td class="${order.status === 'Completed' ? 'completed' : ''}">${order.status}</td>
+                `;
+    
+                cartOrdersBody.appendChild(row);
+            });
+        }
+    
+        // ✅ Fetch orders when the page loads
+        document.addEventListener("DOMContentLoaded", fetchAllOrders);
+    </script>
+    
+
+</body>
+</html>

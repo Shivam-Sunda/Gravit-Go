@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Complain - Campus Restaurant Management System</title>
+  <!-- <link rel="stylesheet" href="complain.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="C:\Users\shiva\Desktop\Software Project\CRMS\public\User\Index.css">
+</head>
+<style>
+  /* Base Styles */
+body {
+    font-family: "Sedan", serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: black;
+    color: whitesmoke;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .complaint-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #ea9247; 
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+  width: 144px;
+  height: 17px;
+  font-family: 'Sedan', sans-serif;
+}
+
+.complaint-btn:hover {
+  background-color: #d2691e;
+}
+
+  .logo {
+    height: 60px; /* Adjust based on logo size */
+    margin-right: 15px; /* Space between logo and text */
+}
+  
+  /* Support Section Styling */
+  .support-section {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #2a2929;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(234, 146, 71, 0.3);
+  }
+  
+  .support-section h3 {
+    color: #ea9247;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .support-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #ea9247;
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: whitesmoke;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #333;
+    color: whitesmoke;
+    font-family: "Sedan", serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #ea9247;
+    box-shadow: 0 0 8px rgba(234, 146, 71, 0.6);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    display: block;
+    width: 50%;
+    margin: 30px auto 0;
+    padding: 14px;
+    background-color: #ea9247;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Sedan", serif;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #d2691e;
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #333;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .support-section {
+      width: 90%;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    
+    .submit-btn {
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .support-section {
+      padding: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+    }
+    
+    .support-section h3 {
+      font-size: 24px;
+    }
+  }
+  /* Add these styles to your existing support.css file */
+
+
+</style>
+<body>
+  <h1 class="main-heading">
+    <img src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY=" alt="Logo" class="logo"> GraVIT & Go
+  </h1>
+    <div class="support-section">
+      <h3>Submit a Complaint Ticket</h3>
+      <form id="complaint-form" action="https://formspree.io/f/xovewywl" method="POST">
+        <div class="form-group">
+          <label for="restaurant-name">Restaurant Name:</label>
+          <input type="text" id="restaurant-name" name="restaurant-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="name">Student Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="registration-number">Registration Number:</label>
+          <input type="text" id="registration-number" name="registration-number" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="issue-type">Complaint Type:</label>
+          <select id="issue-type" name="issue-type" required>
+            <option value="">Select a complaint type</option>
+            <option value="order">Order Issue</option>
+            <option value="service">Service Complaint</option>
+            <option value="payment">Billing/Payment Issue</option>
+            <option value="hygiene">Hygiene Concern</option>
+            <option value="staff">Staff Behavior</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Submit Complaint</button>
+      </form>
+    </div>
+
+    <button class="back-btn" onclick="goback()">Back</button>
+  
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>About Us</h3>
+        <p>Campus Restaurant Management System streamlines dining and takeaway operations for students, faculty, and staff.</p>
+        <div class="contact">
+          <span><i class="fa fa-phone"></i> &nbsp; +91 8406806044</span>
+          <span><i class="fa fa-envelope"></i> &nbsp; crms.vit@gmail.com</span>
+        </div>
+      </div>
+      
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="locations.html">Locations</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-box">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="help.html">Help & Complaint</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Campus Restaurant Management System. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script src="script.js"></script>
+  <script>
+    function goback() {
+    window.location.href = "../Login/login.html";
+  }
+   document.getElementById('complaint-form').addEventListener('submit', async function(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(this);
+  
+  try {
+    const response = await fetch(this.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    
+    if (response.ok) {
+      // Instead of showing an alert, redirect to the thank you page
+      window.location.href = 'thankyou.html';
+    } else {
+      alert('There was an issue submitting your complaint. Please try again.');
+    }
+  } catch (error) {
+    alert('Error sending complaint. Check your internet connection and try again.');
+  }
+});
+  </script>
+</body>
+</html>
+

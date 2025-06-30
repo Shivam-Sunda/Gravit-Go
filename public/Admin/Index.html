@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="C:\Users\shiva\Desktop\Software Project\CRMS\public\Admin\Index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1 class="main-heading">
+    <img src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY=" alt="Logo" class="logo"> GraVIT & Go
+  </h1>
+<h1>Welcome, Admin</h1>
+
+<div class="admin-actions">
+  <button id="modify-menu">Modify Menu</button>
+  <button id="update-inventory">Update Inventory</button>
+  <button id="check-inventory">Check Inventory</button>
+  <button id="completed-orders">Show Completed Orders</button>
+  <button id="current-orders">Show Current Orders</button>
+  <button id="back-btn">Logout</button>
+</div>
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <h3>About Us</h3>
+      <p>Campus Restaurant Management System streamlines dining and takeaway operations for students, faculty, and staff.</p>
+      <div class="contact">
+        <span><i class="fa fa-phone"></i> &nbsp; +91 8406806044</span>
+        <span><i class="fa fa-envelope"></i> &nbsp; crms.vit@gmail.com</span>
+      </div>
+    </div>
+    
+    <div class="footer-box">
+      <h3>Raise a complaint </h3>
+      <p>Faced an issue? Let us know! We're here to resolve your concerns swiftly.</p>
+      <a href="../Complaint/complain.html" class="complaint-btn">Lodge a Complaint</a>
+    </div>
+    
+    <div class="footer-box">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Campus Restaurant Management System. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Add this before the closing body tag -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+          document.getElementById("modify-menu").addEventListener("click", function() {
+          window.location.href = "menuform.html";
+        });
+
+        document.getElementById("update-inventory").addEventListener("click", function() {
+          window.location.href = "inventory.html";
+        });
+
+        document.getElementById("check-inventory").addEventListener("click", function() {
+          window.location.href = "/check_inventory.html";
+        });
+
+        document.getElementById("completed-orders").addEventListener("click", function() {
+          window.location.href = "completed_orders.html";
+        });
+
+        document.getElementById("current-orders").addEventListener("click", function() {
+          window.location.href = "current_orders.html";
+        });
+
+        document.getElementById("back-btn").addEventListener("click", function() {
+          window.location.href = "../Login/login.html";
+        });
+      });
+      
+</script>

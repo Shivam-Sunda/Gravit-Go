@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Campus Restaurant Management System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="C:\Users\shiva\Desktop\Software Project\CRMS\public\User\Index.css">
+</head>
+<style>
+
+.main-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    background-color: #ea9247;
+    color: black;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 50px;
+    font-family: "Sedan", serif;
+    font-weight: 400;
+  }
+
+  .logo {
+    height: 60px; /* Adjust based on logo size */
+    margin-right: 15px; /* Space between logo and text */
+}
+
+
+  .thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+  }
+  
+  .thank-you-card {
+    background-color: #2a2929;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(234, 146, 71, 0.3);
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .check-icon {
+    background-color: #ea9247;
+    color: black;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    font-weight: bold;
+    animation: scaleIn 0.5s ease-in-out 0.3s both;
+  }
+  
+  @keyframes scaleIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  
+  .thank-you-card h2 {
+    color: #ea9247;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .thank-you-card p {
+    color: whitesmoke;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .reference {
+    background-color: rgba(234, 146, 71, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 25px 0;
+    font-size: 16px;
+  }
+  
+  .reference span {
+    font-weight: bold;
+    color: #ea9247;
+    letter-spacing: 1px;
+  }
+  
+  .return-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #ea9247;
+    color: black;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .return-btn:hover {
+    background-color: #d2691e;
+    transform: translateY(-2px);
+  }
+  
+  .return-btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .thank-you-card {
+      padding: 30px 20px;
+    }
+    
+    .check-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+    }
+    
+    .thank-you-card h2 {
+      font-size: 26px;
+    }
+    
+    .thank-you-card p {
+      font-size: 16px;
+    }
+  }
+</style>
+<body>
+  <h1 class="main-heading">
+    <img src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY=" alt="Logo" class="logo"> GraVIT & Go
+   </h1>
+  <div class="thank-you-container">
+    <div class="thank-you-card">
+      <div class="check-icon">✓</div>
+      <h2>Thank You!</h2>
+      <p>Your complaint has been successfully submitted.</p>
+      <p>Our team will review your concerns and get back to you as soon as possible.</p>
+      <p class="reference">Reference Number: <span id="reference-number"></span></p>
+      <a href="login.html" class="return-btn">Return to Home</a>
+    </div>
+  </div>
+  
+  <button class="back-btn" onclick="goback()">Back</button>
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <h3>About Us</h3>
+      <p>Campus Restaurant Management System streamlines dining and takeaway operations for students, faculty, and staff.</p>
+      <div class="contact">
+        <span><i class="fa fa-phone"></i> &nbsp; +91 8406806044</span>
+        <span><i class="fa fa-envelope"></i> &nbsp; crms.vit@gmail.com</span>
+      </div>
+    </div>
+    
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="locations.html">Locations</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-box">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="help.html">Help & Complaint</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Campus Restaurant Management System. All rights reserved.</p>
+  </div>
+</footer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  
+  <script>
+    // Generate a random reference number
+    window.onload = function() {
+      const refNumber = "CMP" + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      document.getElementById('reference-number').textContent = refNumber;
+    };
+    function Logout() {
+    window.location.href = "../Login/login.html";
+  }
+  </script>
+</body>
+</html>

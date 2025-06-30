@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-size: 25px;
+        }
+
+        .main-heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 80px;
+            background-color: #ea9247;
+            color: black;
+            margin: 0;
+            padding: 10px 20px;
+            font-size: 50px;
+            font-family: "Sedan", serif;
+            font-weight: 400;
+
+  }
+  .logo {
+    height: 60px; /* Adjust based on logo size */
+    margin-right: 15px; /* Space between logo and text */
+}
+
+        /* .header {
+            width: 100%;
+            height: 80px;
+            background-color: #ea9247;
+            text-align: center;
+            padding-top: 20px;
+            font-size: 50px;
+            font-family: "Sedan", serif;
+            font-weight: 400;
+            color: black;
+        } */
+
+        h2 {
+            text-align: center;
+            color: whitesmoke;
+            font-size: 40px;
+            margin-bottom: 30px;
+            font-family: "Sedan", serif;
+        }
+
+        table {
+            margin-left: 20%;
+            width: 60%;
+            border-collapse: collapse;
+            background-color: #2a2929;
+            font-family: "Sedan", serif;
+            font-weight: bold;
+            color: whitesmoke;
+            font-size: 18px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid black;
+        }
+
+        th {
+            background-color: #3c3939;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            margin-left: 45%;
+            display: block;
+            width: 10%;
+            padding: 10px;
+            background-color: #ea9247;
+            color: black;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: "Sedan", serif;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #d2691e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="main-heading">
+        <img src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY=" alt="Logo" class="logo"> GraVIT & Go
+    </h1>
+    <h2>Admin - Manage Orders</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="orderTableBody"></tbody>
+    </table>
+
+    <button class="back-btn" onclick="window.history.back()">Back</button>
+
+    <script>
+        async function fetchOrders() {
+            const restaurant = localStorage.getItem("restaurant"); // ✅ Get logged-in restaurant
+    
+            if (!restaurant) {
+                alert("Restaurant not selected.");
+                return;
+            }
+    
+            try {
+                const response = await fetch(`http://localhost:8000/get-orders?restaurant=${restaurant}`);
+                const data = await response.json();
+    
+                if (data.success) {
+                    displayOrders(data.orders);
+                } else {
+                    console.error("Error fetching orders:", data.error);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    
+        function displayOrders(orders) {
+            let orderTableBody = document.getElementById("orderTableBody");
+            orderTableBody.innerHTML = "";  // ✅ Clear old data
+    
+            orders.forEach(order => {
+                let row = document.createElement("tr");
+    
+                row.innerHTML = `
+                    <td>${order.orderId}</td>
+                    <td>${order.productName}</td>
+                    <td>${order.quantity}</td>
+                    <td class="${order.status === 'Completed' ? 'completed' : ''}">${order.status}</td>
+                    <td>
+                        ${order.status === "Pending" ? `<input type="checkbox" onchange="markAsCompleted(${order.orderId})">` : "✅ Completed"}
+                    </td>
+                `;
+    
+                orderTableBody.appendChild(row);
+            });
+        }
+    
+        async function markAsCompleted(orderId) {
+            const restaurant = localStorage.getItem("restaurant"); // ✅ Get restaurant
+    
+            try {
+                const response = await fetch("http://localhost:8000/update-order-status", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ orderId, restaurant }) // ✅ Send restaurant with request
+                });
+    
+                const data = await response.json();
+    
+                if (data.success) {
+                    alert("Order marked as completed!");
+                    fetchOrders(); // ✅ Refresh orders
+                } else {
+                    console.error("Error updating order status:", data.error);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    
+        // ✅ Fetch orders when the page loads
+        document.addEventListener("DOMContentLoaded", fetchOrders);
+    </script>
+    
+
+</body>
+</html>
