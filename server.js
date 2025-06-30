@@ -15,12 +15,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(path.join(__dirname, "public")));  // Serve static assets
 
-// If you want login.html to show for root (/) requests:
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
+  res.redirect("/login/login.html");
 });
-
-// (Place your API route definitions here)
 
 
 // ✅ Razorpay Instance
