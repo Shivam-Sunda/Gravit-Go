@@ -15,9 +15,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(path.join(__dirname, "public")));  // Serve static assets
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.get("/login/login.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login", "login.html"));
+});
 
 
 // ✅ Razorpay Instance
