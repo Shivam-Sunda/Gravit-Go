@@ -131,7 +131,7 @@
             }
     
             try {
-                const response = await fetch(`http://localhost:8000/get-orders?restaurant=${restaurant}`);
+                const response = await fetch(`https://app-2529ab11-7381-4515-98a6-85c25c363c41.cleverapps.io/get-orders?restaurant=${restaurant}`);
                 const data = await response.json();
     
                 if (data.success) {
@@ -169,7 +169,7 @@
             const restaurant = localStorage.getItem("restaurant"); // ✅ Get restaurant
     
             try {
-                const response = await fetch("http://localhost:8000/update-order-status", {
+                const response = await fetch("https://app-2529ab11-7381-4515-98a6-85c25c363c41.cleverapps.io/update-order-status", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ orderId, restaurant }) // ✅ Send restaurant with request

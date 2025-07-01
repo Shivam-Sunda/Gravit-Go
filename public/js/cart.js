@@ -2,7 +2,7 @@ const payBtn = document.querySelector(".btn-buy");
 
 payBtn.addEventListener("click", async () => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-    const restaurant = localStorage.getItem("selectedRestaurant");  // ✅ Get selected restaurant
+    const restaurant = localStorage.getItem("selectedRestaurant");
 
     if (!cartItems || cartItems.length === 0) {
         alert("Your cart is empty!");
@@ -14,17 +14,19 @@ payBtn.addEventListener("click", async () => {
         return;
     }
 
-    // ✅ Calculate Total Price Dynamically
     let totalAmount = cartItems.reduce((sum, item) => {
         let price = parseFloat(item.price.replace("₹", "").trim());
         return sum + price * item.quantity;
     }, 0);
 
-    console.log("Total Cart Amount:", totalAmount); // Debugging
+    console.log("Total Cart Amount:", totalAmount);
 
     try {
+        // 🔗 Clever Cloud backend URL
+        const baseUrl = "https://app-2529ab11-7381-4515-98a6-85c25c363c41.cleverapps.io";
+
         // ✅ 1. Create Razorpay Order
-        const orderResponse = await fetch("http://localhost:8000/create-order", {
+        const orderResponse = await fetch(`${baseUrl}/create-order`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount: totalAmount, currency: "INR" })
@@ -40,21 +42,21 @@ payBtn.addEventListener("click", async () => {
         // ✅ 2. Open Razorpay Payment Window
         const options = {
             key: "rzp_test_qN051OkLcA22wd",
-            amount: orderData.order.amount * 100,  
+            amount: orderData.order.amount * 100,
             currency: orderData.order.currency,
             name: "Campus Restaurant",
-            description: `Order from ${restaurant.toUpperCase()}`,  
+            description: `Order from ${restaurant.toUpperCase()}`,
             order_id: orderData.order.id,
             handler: async function (response) {
                 console.log("✅ Payment Successful:", response);
 
                 // ✅ 3. Place Order in Database
-                const placeOrderResponse = await fetch("http://localhost:8000/place-order", {
+                const placeOrderResponse = await fetch(`${baseUrl}/place-order`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         items: cartItems,
-                        restaurant,  // ✅ Send restaurant name
+                        restaurant,
                         razorpayPaymentId: response.razorpay_payment_id,
                     })
                 });
@@ -64,15 +66,14 @@ payBtn.addEventListener("click", async () => {
                 if (placeOrderData.success) {
                     alert("✅ Order Placed Successfully!");
 
-                    // ✅ Clear Cart
                     localStorage.removeItem("cartItems");
                     localStorage.removeItem("cartTotal");
 
                     if (document.querySelector(".cart-content")) {
-                        document.querySelector(".cart-content").innerHTML = ""; 
+                        document.querySelector(".cart-content").innerHTML = "";
                     }
 
-                    window.location.href = "cart.html"; 
+                    window.location.href = "cart.html";
                 } else {
                     alert("❌ Failed to place order!");
                 }
